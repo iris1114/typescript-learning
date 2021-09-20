@@ -84,29 +84,36 @@
     "checkJs": true,    // 報告 javascript 文件中的錯誤
     "jsx": "preserve",  // 指定 jsx 代碼的生成: 'preserve', 'react-native', or 'react'
     "declaration": true,  // 生成相應的 '.d.ts' 文件
+    "declarationMap": true,   //生成宣告檔案的 sourceMap
     "sourceMap": true,   // 生成相應的 '.map' 文件
     "outFile": "./",     // 將輸出文件合併為一個文件
     "outDir": "./",      // 指定輸出目錄
     "rootDir": "./",     // 檔案應該要被放置的位置
+    "composite": true,       // 是否编译构建引用项目
+    "tsBuildInfoFile": "./", // 指定文件存儲增量編譯信息，默認為 tsconfig.tsbuildinfo
     "removeComments": true,  // 刪除編譯後的所有的註釋
     "noEmit": true,          // 不產生輸出檔案
     "importHelpers": true,   // 從 tslib 導入輔助工具函數
     "isolatedModules": true,  // 將每個文件做為單獨的module（與 'ts.transpileModule' 類似）.
 
     /* 嚴格的類型檢查選項 */
-    "strict": true,           // 啟用所有嚴格類型檢查選項
-    "noImplicitAny": true,    // 在表達式和聲明上有隱含的 any類型時報錯
-    "strictNullChecks": true, // 啟用嚴格的 null 檢查
-    "noImplicitThis": true,   // 當 this 表達式值為 any 類型的時候，生成一個錯誤
-    "alwaysStrict": true,     // 以嚴格模式檢查每個module，並在每個文件裡加入 'use strict'
+    "strict": true,           // 啟用所有嚴格類型檢查選項                    
+    "noImplicitAny": true,    // 在表達式和聲明上有隱含的 any類型時報錯                   
+    "strictNullChecks": true,  // 啟用嚴格的 null 檢查                  
+    "strictFunctionTypes": true,    //啟用檢查function型別        
+    "strictBindCallApply": true,   //啟用對 bind, call, apply 更嚴格的型別檢查           
+    "strictPropertyInitialization": true,     //啟用class实例属性的賦值檢查
+    "noImplicitThis": true,    //當 this 表達式值為 any 類型的時候，生成一個錯誤                
+    "alwaysStrict": true,     // 以嚴格模式檢查每個module，並在每個文件裡加入 'use strict'                  
 
     /* 額外的檢查 */
     "noUnusedLocals": true,   // 有未使用的變數時，拋出錯誤
     "noUnusedParameters": true,  // 有未使用的參數時，拋出錯誤
     "noImplicitReturns": true, // 並不是所有function里的代碼都有返回值時，拋出錯誤
     "noFallthroughCasesInSwitch": true, // 報告 switch 語句的 fallthrough 錯誤。 （即，不允許 switch 的 case 語句貫穿）
+    "noUncheckedIndexedAccess": true,       //檢查 index signature 屬性是否是undefined     
 
-    /* 模塊解析選項 */
+    /* 模組選項 */
     "moduleResolution": "node",  // 選擇模組解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
     "baseUrl": "./",         // 用於解析非相對模組名稱的基目錄
     "paths": {},            // 模組名到基於 baseUrl 的路徑映射的列表

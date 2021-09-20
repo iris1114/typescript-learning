@@ -47,32 +47,6 @@ myFavoriteNumber = 7;
 let myFavoriteNumber2: boolean = myFavoriteNumber; // 布林型別 ok
 
 
-//union types
-function printId(id: number | string) {
-  console.log("Your ID is: " + id);
-}
-
-
-//literal types
-let x: "hello" = "hello";
-x = "hello"; // ok
-x = "howdy"; // Type '"howdy"' is not assignable to type '"hello"'.
-
-//enums
-enum Days {
-  Sun,Mon,Tue,Wed,Thu,Fri,Sat
-}
-console.log(Days["Sun"] === 0); // true
-console.log(Days["Mon"] === 1); // true
-
-
-
-//void
-function alertName(): void {
-  alert("My name is iris");
-}
-
-
 //unknow
 let value: unknown;
 value = true; // 布林型別，ok
@@ -81,11 +55,46 @@ let value1: unknown = value; // unknown型別，ok
 let value2: boolean = value; // 布林型別， error
 
 
+//void
+function alertName(): void {
+  alert("My name is iris");
+}
+
+
 //never
 function error(message: string): never {
   throw new Error(message);
 }
 
+//union types
+function printId(id: number | string) {
+  console.log("Your ID is: " + id);
+}
+
+
+//intersection types
+interface Colorful {
+  color: string;
+ }
+ interface Circle {
+  radius: number;
+ }
+ type ColorfulCircle = Colorful & Circle;
+
+
+//literal types
+let x: "hello" = "hello";
+x = "hello"; // ok
+x = "howdy"; // Type '"howdy"' is not assignable to type '"hello"'.
+
 
 //tuple
 const iris: [string, number] = ['iris', 18];
+
+
+//enums
+enum Days {
+  Sun,Mon,Tue,Wed,Thu,Fri,Sat
+}
+console.log(Days["Sun"] === 0); // true
+console.log(Days["Mon"] === 1); // true
