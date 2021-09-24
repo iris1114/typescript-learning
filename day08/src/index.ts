@@ -6,7 +6,6 @@ let person = {
     age: 18
 };
 
-
 person.name = "aka 廢廢前端" //ok 型別相同
 person = {
     name: "aa",  //ok 覆寫的物件格式必須完全相同
@@ -22,7 +21,12 @@ person = {
     gender : "male", //error Type '{ gender: string; job: string; }' is not assignable to type '{ name: string; age: number; }'
     job : "在家躺"
 }
+
+//沒開嚴謹模式的時候
 delete person.name; //可執行刪除屬性
+
+//tsconfig 開啟嚴謹模式 會報錯提醒
+delete person.name;//error: The operand of a 'delete' operator must be optional.
 
 
 
@@ -75,6 +79,7 @@ const getUserInfo2 = (person5: { name: string, age?: number }) =>{
     }
 }
 
-getUserInfo2({ name: "iris"}); 
-getUserInfo2({ name: "iris", age: 18 });
+getUserInfo2({ name: "iris"}); //Hello, my name is iris.
+getUserInfo2({ name: "iris", age: 18 }); //Hello, my name is iris. I'm 18 years old.
+
 
