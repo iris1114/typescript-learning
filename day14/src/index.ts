@@ -176,3 +176,24 @@ const list: INumberArray = [1, 1, 2, 3, 5];
 interface IPersonFunc {
   (name: string, age: number): void;
 }
+
+
+
+//**  interface 可以 function overload **//
+interface IPoint {
+    getDist(): number;
+    getDist(x?: number): number;
+}
+
+const point:IPoint = {
+    getDist(x?: number) {
+         if (x && typeof x == "number") {
+             return x;
+         } else {
+             return 0;
+         }
+    }
+}
+
+console.log(point.getDist(20)); //20
+console.log(point.getDist()); //0

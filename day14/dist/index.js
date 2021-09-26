@@ -54,3 +54,14 @@ var iris8 = {
     age: 18
 };
 var list = [1, 1, 2, 3, 5];
+var point = {
+    getDist: function (x) {
+        if (x && typeof x == "number") {
+            return x;
+        }
+        else {
+            return 0;
+        }
+    }
+};
+console.log(point.getDist(20));
