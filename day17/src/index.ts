@@ -1,4 +1,5 @@
 // Day17: 【TypeScript 學起來】什麼是 Narrowing？
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 function padLeft(padding: number | string, input: string) {
   return new Array(padding + 1).join(" ") + input; //error: Operator '+' cannot be applied to types 'string | number' and 'number'.
@@ -30,7 +31,23 @@ function printAll(strs: string | string[] | null) {
 }
 
 
-//**  使用 in  **//
+//**  Equality narrowing  **//
+
+function printAll2(strs: string | string[] | null) {
+  if (strs !== null) {
+    if (typeof strs === "object") {
+      for (const s of strs) {
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs);
+    }
+  }
+}
+
+
+
+//**   使用`"value" in x`  **//
 type Fish = { swim: () => void };
 type Bird = { fly: () => void };
  

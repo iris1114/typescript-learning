@@ -26,6 +26,45 @@ function printAll(strs) {
         console.log(strs);
     }
 }
+function printAll2(strs) {
+    if (strs && typeof strs === "object") {
+        for (var _i = 0, strs_2 = strs; _i < strs_2.length; _i++) {
+            var s = strs_2[_i];
+            console.log(s);
+        }
+    }
+    else if (typeof strs === "string") {
+        console.log(strs);
+    }
+}
+printAll2(["a", "b", "c"]);
+printAll2(null);
+function printAll3(strs) {
+    if (strs) {
+        if (typeof strs === "object") {
+            for (var _i = 0, strs_3 = strs; _i < strs_3.length; _i++) {
+                var s = strs_3[_i];
+                console.log(s);
+            }
+        }
+        else if (typeof strs === "string") {
+            console.log(strs);
+        }
+    }
+}
+printAll3(null);
+function multiplyAll(values, factor) {
+    if (!values) {
+        console.log(values);
+        return values;
+    }
+    else {
+        console.log(values);
+        return values.map(function (x) { return x * factor; });
+    }
+}
+multiplyAll([1, 2, 3], 2);
+multiplyAll(null, 2);
 function move(animal) {
     if ("swim" in animal) { //animal 物件裡有屬性 "swim"，則一定是 Fish 型別
         return animal.swim();
