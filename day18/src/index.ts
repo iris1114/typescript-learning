@@ -1,7 +1,7 @@
 // Day18: 【TypeScript 學起來】Narrowing Part 2
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //**  使用 type predicates **//
-//例子1
 type Fish = { swim: () => void };
 type Bird = { fly: () => void };
 
@@ -13,30 +13,33 @@ function isFish(pet: Fish | Bird): pet is Fish {
   return (pet as Fish).swim !== undefined;   //（pet as Fish）斷言 pet 為 Fish 型別 ， 所以 swim 不會是undefined 
 }
 
-// 例子2
-let isUnknown: unknown = "hello unknown";
-
-function isNumber(x: any): x is number {
-  return typeof x === 'number';
-}
-
-function isString(x: any): x is string {
-  return typeof x === 'string';
-}
-
-if (isNumber(isUnknown)) {
-  // 這裡可以確保 isUnknown 是 number
-  isUnknown.toFixed();
-}
-
-if (isString(isUnknown)) {
-  // 這裡可以確保 isUnknown 是 string
-  isUnknown.split(', ');
-}
-
 
 
 //**  Discriminated unions  **//
+//例子1
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+ 
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+ 
+type Shape = Circle | Square;
+
+function getArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius ** 2;
+  }
+}
+
+let area = getArea({ kind: "circle", radius: 5});
+console.log(area);
+
+
+//例子2
 interface ISuccessResp {
   status: 'OK';  //相同欄位 status
   payload: unknown;
