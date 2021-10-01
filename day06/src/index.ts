@@ -1,4 +1,5 @@
 //Day06: 資料型別那些事 : 總覽
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //string
 const names: string = "iris";

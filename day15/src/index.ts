@@ -1,5 +1,5 @@
 //  Day15: 【TypeScript 學起來】Interface VS Type Aliases 
-
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //**  Type Aliases(型別別名) **//
 type StringOrNum = string | number;

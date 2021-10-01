@@ -1,5 +1,6 @@
 // Day11:【TypeScript 學起來】只有 TS 才有的型別 : Union Types(聯合型別) / Intersection types (交叉型別)
-//都是測試例子，故意測試錯誤，報錯請自行註解掉
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
+
 
 //**  union types(聯合型別) **/
 function printId(id: number | string) {

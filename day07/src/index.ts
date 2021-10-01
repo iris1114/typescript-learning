@@ -1,4 +1,6 @@
 //Day07: 原始資料型別 Primitive Types
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
+
 
 //string (字串)
 const myName: string = 'iris';

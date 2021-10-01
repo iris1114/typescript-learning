@@ -1,5 +1,5 @@
 //Day02: Hello TypeScript! 環境安裝起來 + 牛刀小試～
-
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //建立第一個 TypeScript 檔案
 function sayHello(person: string) {

@@ -1,5 +1,5 @@
 //Day16:【TypeScript 學起來】Index Signatures 索引簽名
-
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //**  定義一個 Index Signature  **//
 interface IPerson {

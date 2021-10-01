@@ -1,4 +1,5 @@
 //Day08:【TypeScript 學起來】物件型別 Object Types : object
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 // 一般 JSON 物件格式
 let person = {

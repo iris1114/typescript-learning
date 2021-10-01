@@ -1,4 +1,6 @@
 // Day09: 【TypeScript 學起來】物件型別 Object Types : arrays / function
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
+
 
 //arrays
 //1.一般方括號寫法
