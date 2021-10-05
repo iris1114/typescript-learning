@@ -1,69 +1,119 @@
-// Day19  : 【TypeScript 學起來】Generics 泛型
+// Day19 :【TypeScript 學起來】More on Functions
 
 
-//「型別 + 方括號」
-const list1: number[] = [1, 2, 3];
-//陣列泛型 
-const list2: Array<number> = [1, 2, 3]; 
+//** 使用 function 關鍵字 **//
+function greeter(fn: (a: string) => void) {
+  fn("Hello, World");
+}
+ 
+function printToConsole(s: string) {
+  console.log(s);
+}
+ 
+greeter(printToConsole); //Hello, World
 
 
-//**  泛型怎麼用？ **//
 
-function identity(arg: Array<number>): Array<number> {
-  console.log(arg);
-  return arg;
+//** Call Signatures，給 function 新增屬性 **//
+//js function 是可以增加屬性
+const jsFunc = () => {
+    return "this's a function";
 }
 
-identity([1, 2, 3]); // [1, 2, 3]
+jsFunc.prop = "this's a prop";
+jsFunc.desc = "this's a desc";
+console.log(jsFunc);  //[Function: func] { prop: "this's a prop", desc: "this's a desc" }
 
-function identity2(arg: number[]): number[] {
-  console.log(arg);
-  return arg;
-}
 
-identity2([1, 2, 3]); // [1, 2, 3]
+type typeFunc = (x: string) => void;
 
 
 
-function identity3<Type>(arg: Type[]): Type[] {
-  return arg;
-}
-
-let output1 = identity3([1, 2, 3]); 
-let output2 = identity3(["a", "b", "c"]);
-console.log(output1);// [1, 2, 3]
-console.log(output2); //["a","b","c"]
-
-
-let output3 = identity3<string>(["a", "b", "c"]); //指定泛型回傳型別 `<type>`
-let output4 = identity3(["a", "b", "c"]); 
-console.log(output3); // [ 'a', 'b', 'c' ]
-console.log(output4); // [ 'a', 'b', 'c' ]
-
-
-
-//**  多個參數情況 **//
-let makeTuple = <X, Y>(x: X, y: Y) => {
-  console.log([x, y]);
+//新增 call signatures
+type DescribableFunction = {  
+  description: string;
+  (someArg: number): boolean;  //這邊特別注意我們使用：非 =>
 };
 
-makeTuple(1, "a"); //[1,"a"]
-
-
-
-//**  泛型約束 **//
-//由於事先不知道它是哪種型別，所以不能隨意的操作它的屬性或方法，如下方例子，泛型 T 不一定包含屬性 length
-function loggingIdentity<T>(arg: T): T {
-  console.log(arg.length);  //error:Property 'length' does not exist on type 'T'.
-  return arg;
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
 }
 
-interface Lengthwise {
-  length: number;
+//回傳boolean 如果大於5回傳true
+const func = (someArg: number): boolean => { 
+  return someArg > 5;  
+};
+
+//新增屬性
+func.description = "isNumber > 5";
+
+doSomething(func); //isNumber > 5 returned true
+
+
+
+//** Construct Signatures **//
+type SomeConstructor = {
+  new (s: string): SomeObject;
+};
+function fn(ctor: SomeConstructor) {
+  return new ctor("hello");
 }
 
-function loggingIdentity2<T extends Lengthwise>(arg: T): T {
-  console.log(arg.length);
-  return arg;
+
+
+//** Optional Parameters 可選參數 **//
+const getName = (firstName: string, lastName?: string) => {
+    return  lastName ? `${firstName} ${lastName}` : firstName;
+}
+ 
+
+//** default-initialized parameters 使用參數預設值 **//
+const getName2 = (firstName: string, lastName = "Chen") => {
+    return `${firstName} ${lastName}`;
+} 
+console.log(getName2("Tom")); //Tom Chen
+
+
+const getName3 = (firstName = "Tom", lastName: string) => {
+    return `${firstName} ${lastName}`;
 }
 
+console.log(getName3(undefined, "Chen")); //Tom Chen
+
+
+
+//** Rest Parameters **//
+function multiply(n: number, ...m: number[]) {
+  return m.map((x) => n * x);
+}
+
+const a = multiply(10, 1, 2, 3, 4);
+
+console.log(a); //[10, 20, 30, 40]
+
+const getName4 = (firstName: string, ...rest: string[]) => {
+    return `${firstName} ${rest.join(' ')}`;
+} 
+const names = getName4('Tom', 'Jerry', 'Chen');
+console.log(names); 
+
+
+//** Rest Arguments **//
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+arr1.push(...arr2);
+
+console.log(arr1); // [1, 2, 3, 4, 5, 6]
+
+
+// Inferred type is number[] -- "an array with zero or more numbers",
+// not specifically two numbers
+const args = [8, 5];
+// error
+const angle = Math.atan2(...args); 
+
+
+// Inferred as 2-length tuple
+const args = [8, 5] as const;
+// ok
+const angle = Math.atan2(...args);
