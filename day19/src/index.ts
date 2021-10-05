@@ -1,5 +1,5 @@
 // Day19 :【TypeScript 學起來】More on Functions
-
+//都是測試例子，有些可能是故意測試錯誤，可自行註解
 
 //** 使用 function 關鍵字 **//
 function greeter(fn: (a: string) => void) {
